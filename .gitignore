@@ -1,0 +1,5 @@
+data/ # Git should ignore my data folder. 
+.venv/ # Git should ignore my virtual environment. 
+__pycache__/ # Git should ignore my Python cache files. 
+*.pyc # Git should ignore my compiled Python files.
+.ipynb_checkpoints/ # Git should ignore my Jupyter Notebook checkpoints.
