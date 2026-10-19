@@ -1,11 +1,9 @@
-numpy
+streamlit
 pandas
-matplotlib
-seaborn
+numpy
 scikit-learn
 joblib
-xgboost
-lightgbm
-catboost
-imbalanced-learn
-streamlit
+plotly
+matplotlib
+shap
+LogisticRegression
