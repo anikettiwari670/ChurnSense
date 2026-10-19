@@ -1,13 +1,17 @@
+from pathlib import Path
 import streamlit as st
 import pandas as pd
 import joblib
 import plotly.express as px
 from pathlib import Path
 
+# Repository root
+ROOT_DIR = Path(__file__).resolve().parent.parent
+
 # Project paths
-ROOT = Path(__file__).resolve().parent.parent
-DATA_PATH = ROOT / "data" / "WA_Fn-UseC_Telco.csv"
-MODEL_PATH = ROOT / "models" / "churn_model_v1.pkl"
+DATA_PATH = ROOT_DIR / "data" / "WA_Fn-UseC_-Telco-Customer-Churn.csv"
+MODEL_PATH = ROOT_DIR / "models" / "churn_model_v1.pkl"
+
 
 # Page configuration
 st.set_page_config(
