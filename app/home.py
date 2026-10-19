@@ -1,4 +1,3 @@
-```python
 from pathlib import Path
 
 import streamlit as st
@@ -106,4 +105,3 @@ except FileNotFoundError:
 
 except Exception as e:
     st.error(f"Unable to load the dashboard: {e}")
-```
