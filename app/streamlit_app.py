@@ -28,6 +28,7 @@ home_page = st.Page(
     default=True,
 )
 
+
 predict_page = st.Page(
     str(APP_DIR / "pages" / "01_predict.py"),
     title="Predict Churn",
@@ -46,19 +47,15 @@ analytics_page = st.Page(
     icon="📊",
 )
 
+
 # --------------------------------------------------
 # NAVIGATION
 # --------------------------------------------------
 pg = st.navigation(
     {
-        "WORKSPACE": [home_page],
-        "CHURN INTELLIGENCE": [
-            predict_page,
-            batch_page,
-        ],
-        "MODEL PERFORMANCE": [
-            analytics_page,
-        ],
+        "OVERVIEW": [home_page],
+        "PREDICTION": [predict_page, batch_page],
+        "INSIGHTS": [analytics_page],
     },
     position="sidebar",
 )
