@@ -1,11 +1,10 @@
-
 import streamlit as st
 import pandas as pd
 import joblib
 import plotly.graph_objects as go
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[2] # Path(__file__).resolve() refers to the full path to app/pages/01_Predict.py, whereas .parents[0] refers to the "app/pages" folder, .parents[1] refers to the "app" folder, and .parents[2] refers to the "01_ChurnSense" project root. 
 MODEL_PATH = ROOT / "models" / "churn_model_v1.pkl"
 
 FEATURE_COLUMNS = [
@@ -37,8 +36,12 @@ st.set_page_config(
     layout="wide",
 )
 
+from theme import apply_theme
+apply_theme()
+
+
 st.title("🔮 Predict Customer Churn")
-st.write("Enter customer details to estimate churn risk.")
+st.write("Enter Customer Details to Estimate Churn Risk:")
 
 
 @st.cache_resource
@@ -237,11 +240,11 @@ try:
             st.plotly_chart(fig, use_container_width=True)
 
             if probability >= 0.70:
-                st.error("High estimated churn probability.")
+                st.error("High Estimated Churn Probability.")
             elif probability >= 0.40:
-                st.warning("Moderate estimated churn probability.")
+                st.warning("Moderate Estimated Churn Probability.")
             else:
-                st.success("Low estimated churn probability.")
+                st.success("Low Estimated Churn Probability.")
         else:
             st.info(
                 "This model does not support predict_proba, "
@@ -249,7 +252,7 @@ try:
             )
 
         st.caption(
-            "This is a model estimate, not a guarantee that the customer will churn."
+            "This is a Model Estimate, not a Guarantee that the Customer will Churn."
         )
 
 except FileNotFoundError:

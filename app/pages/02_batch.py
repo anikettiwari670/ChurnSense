@@ -1,10 +1,9 @@
-
 import streamlit as st
 import pandas as pd
 import joblib
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[2] # Path(__file__).resolve() refers to the full path to app/pages/01_Predict.py, whereas .parents[0] refers to the "app/pages" folder, .parents[1] refers to the "app" folder, and .parents[2] refers to the "01_ChurnSense" project root.
 MODEL_PATH = ROOT / "models" / "churn_model_v1.pkl"
 
 FEATURE_COLUMNS = [
@@ -36,6 +35,10 @@ st.set_page_config(
     layout="wide",
 )
 
+from theme import apply_theme
+apply_theme()
+
+
 st.title("📂 Batch Churn Prediction")
 st.write(
     "Upload a CSV containing customer features to predict churn "
@@ -56,7 +59,7 @@ try:
     model = load_model()
 
     uploaded_file = st.file_uploader(
-        "Upload customer CSV",
+        "Upload Customer CSV",
         type=["csv"],
         help=(
             "The CSV should contain the same feature columns used to train "
@@ -69,7 +72,7 @@ try:
         try:
             customers = pd.read_csv(uploaded_file)
         except Exception as e:
-            st.error(f"Could not read the uploaded CSV: {e}")
+            st.error(f"Could Not Read the Uploaded CSV: {e}")
             st.stop()
 
         st.subheader("Uploaded Data")
@@ -77,7 +80,7 @@ try:
         st.dataframe(customers.head(10), use_container_width=True)
 
         if customers.empty:
-            st.warning("The uploaded CSV contains no customer records.")
+            st.warning("The Uploaded CSV Contains no Customer Records.")
             st.stop()
 
         # Remove identifiers and an existing target column, if present.
@@ -100,12 +103,12 @@ try:
 
         if missing_columns:
             st.error(
-                "The uploaded CSV is missing required feature columns: "
+                "The Uploaded CSV is Missing Required Feature Columns: "
                 + ", ".join(missing_columns)
             )
             st.info(
-                "Use a CSV with the same feature names and spelling as the "
-                "data used to train the model."
+                "Use a CSV with the Same Feature Names and Spelling as the "
+                "Data used to Train the Model."
             )
             st.stop()
 
@@ -167,8 +170,8 @@ try:
 
 except FileNotFoundError:
     st.error(
-        "Model file not found. Ensure "
+        "Model File not Found. Ensure "
         "'models/churn_model_v1.pkl' exists in the project root."
     )
 except Exception as e:
-    st.error(f"Batch prediction failed: {e}")
+    st.error(f"Batch Prediction Failed: {e}")

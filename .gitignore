@@ -1,5 +1,67 @@
-data/ # Git should ignore my data folder. 
-.venv/ # Git should ignore my virtual environment. 
-__pycache__/ # Git should ignore my Python cache files. 
-*.pyc # Git should ignore my compiled Python files.
-.ipynb_checkpoints/ # Git should ignore my Jupyter Notebook checkpoints.
+# ==============================
+# Python cache and compiled files
+# ==============================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ==============================
+# Virtual environments
+# ==============================
+.venv/
+venv/
+env/
+churnsense/
+
+# ==============================
+# Environment variables and secrets
+# ==============================
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# ==============================
+# Jupyter Notebook files
+# ==============================
+.ipynb_checkpoints/
+
+# ==============================
+# Testing and coverage
+# ==============================
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ==============================
+# IDE and editor files
+# ==============================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ==============================
+# Operating system files
+# ==============================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==============================
+# Logs and temporary files
+# ==============================
+*.log
+*.tmp
+*.bak
+
+# ==============================
+# Streamlit
+# ==============================
+.streamlit/secrets.toml
+
+# ==============================
+# Data files
+# Keep the project dataset tracked if required for deployment.
+# Uncomment the next line only if you want to ignore all CSV files.
+# *.csv

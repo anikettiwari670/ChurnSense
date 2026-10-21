@@ -1,42 +1,66 @@
+from pathlib import Path
+
 import streamlit as st
+from theme import apply_theme
+
+# --------------------------------------------------
+# APP CONFIGURATION
+# --------------------------------------------------
+APP_DIR = Path(__file__).resolve().parent
 
 st.set_page_config(
-    page_title="ChurnSense",
+    page_title="ChurnSense | Customer Intelligence",
     page_icon="🏢",
     layout="wide",
+    initial_sidebar_state="expanded",
 )
 
+# Apply the custom dark theme globally
+apply_theme()
+
+# --------------------------------------------------
+# PAGE DEFINITIONS
+# --------------------------------------------------
 home_page = st.Page(
-    "home.py",
-    title="Home",
+    str(APP_DIR / "home.py"),
+    title="Overview",
     icon="🏠",
     default=True,
 )
 
 predict_page = st.Page(
-    "pages/01_predict.py",
-    title="Customer Prediction",
-    icon="🔍",
+    str(APP_DIR / "pages" / "01_Predict.py"),
+    title="Predict Churn",
+    icon="🔮",
 )
 
 batch_page = st.Page(
-    "pages/02_batch.py",
-    title="Batch Prediction",
-    icon="📁",
+    str(APP_DIR / "pages" / "02_Batch.py"),
+    title="Batch Predictions",
+    icon="📂",
 )
 
 analytics_page = st.Page(
-    "pages/03_analytics.py",
+    str(APP_DIR / "pages" / "03_Analytics.py"),
     title="Model Analytics",
     icon="📊",
 )
 
+# --------------------------------------------------
+# NAVIGATION
+# --------------------------------------------------
 pg = st.navigation(
     {
-        "Dashboard": [home_page],
-        "Churn Prediction": [predict_page, batch_page],
-        "Analytics": [analytics_page],
-    }
+        "WORKSPACE": [home_page],
+        "CHURN INTELLIGENCE": [
+            predict_page,
+            batch_page,
+        ],
+        "MODEL PERFORMANCE": [
+            analytics_page,
+        ],
+    },
+    position="sidebar",
 )
 
 pg.run()

@@ -6,4 +6,3 @@ joblib
 plotly
 matplotlib
 shap
-LogisticRegression

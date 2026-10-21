@@ -1,13 +1,11 @@
-
 import streamlit as st
 import pandas as pd
 import joblib
 import plotly.express as px
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[2] # Path(__file__).resolve() refers to the full path to app/pages/01_Predict.py, whereas .parents[0] refers to the "app/pages" folder, .parents[1] refers to the "app" folder, and .parents[2] refers to the "01_ChurnSense" project root.
 MODEL_PATH = ROOT / "models" / "churn_model_v1.pkl"
-ROC_PATH = ROOT / "reports" / "roc_curves.png"
 
 DATA_CANDIDATES = [
     ROOT / "data" / "WA_Fn-UseC_-Telco-Customer-Churn.csv",
@@ -22,8 +20,12 @@ st.set_page_config(
     layout="wide",
 )
 
+from theme import apply_theme
+apply_theme()
+
+
 st.title("📈 Model Analytics")
-st.write("Explore your trained model and customer churn dataset.")
+st.write("Explore Your Trained Model and Customer Churn Dataset.")
 
 
 @st.cache_resource
@@ -65,20 +67,6 @@ def get_transformed_feature_names(model, estimator):
 
 
 # --------------------------------------------------
-# ROC curve
-# --------------------------------------------------
-st.subheader("ROC Curve")
-
-if ROC_PATH.exists():
-    st.image(str(ROC_PATH), use_container_width=True)
-else:
-    st.info(
-        "ROC curve image not found. If you generated an ROC curve, "
-        "save it as reports/roc_curves.png."
-    )
-
-
-# --------------------------------------------------
 # Model information and feature analysis
 # --------------------------------------------------
 try:
@@ -94,7 +82,7 @@ try:
         "Yes" if hasattr(model, "steps") else "No",
     )
 
-    # Logistic Regression coefficients
+    # Logistic Regression coefficients.
     if hasattr(estimator, "coef_"):
         st.subheader("Logistic Regression Coefficients")
 
@@ -108,8 +96,8 @@ try:
         else:
             coefficient_values = coefficients.reshape(-1)
             coefficient_description = (
-                "Positive values increase the model's log-odds for its "
-                "positive class; negative values decrease them."
+                "Positive Values Increase the Model's Log-Odds for its "
+                "Positive Class; Negative Values Decrease them."
             )
 
         feature_names = get_transformed_feature_names(model, estimator)
@@ -141,13 +129,13 @@ try:
         st.caption(coefficient_description)
 
         st.write(
-            "Note: coefficient direction depends on the class coding and "
-            "preprocessing. With one-hot encoding, a coefficient is relative "
-            "to the relevant reference category. Coefficients are not "
-            "causal effects."
+            "Note: Coefficient Direction Depends on the Class Coding and "
+            "Preprocessing. With One-Hot Encoding, a Coefficient is Relative "
+            "to the Relevant Reference Category. Coefficients are not "
+            "Causal Effects."
         )
 
-    # Tree-based model feature importances
+    # Tree-based model feature importances.
     elif hasattr(estimator, "feature_importances_"):
         st.subheader("Feature Importances")
 
@@ -184,17 +172,17 @@ try:
 
     else:
         st.info(
-            "This estimator does not expose coef_ or feature_importances_. "
-            "Check the model type and its supported interpretation methods."
+            "This Estimator does not Expose coef_ or feature_importances_. "
+            "Check the Model Type and its Supported Interpretation Methods."
         )
 
 except FileNotFoundError:
     st.error(
-        "Model file not found. Ensure "
-        "'models/churn_model_v1.pkl' exists in the project root."
+        "Model File not Found. Ensure "
+        "'models/churn_model_v1.pkl' Exists in the Project Root."
     )
 except Exception as e:
-    st.error(f"Unable to load model analytics: {e}")
+    st.error(f"Unable to Load Model Analytics: {e}")
 
 
 # --------------------------------------------------
@@ -210,14 +198,14 @@ DATA_PATH = next(
 
 if DATA_PATH is None:
     st.info(
-        "Dataset CSV not found in the expected data folder. "
-        "Model analytics can still work if the trained model is present."
+        "Dataset CSV not found in the Expected Data Folder. "
+        "Model Analytics can still work if the Trained Model is Present."
     )
 else:
     try:
         df = load_data(str(DATA_PATH))
 
-        st.caption(f"Dataset file: {DATA_PATH.name}")
+        st.caption(f"Dataset File: {DATA_PATH.name}")
 
         col1, col2 = st.columns(2)
         col1.metric("Total Records", f"{len(df):,}")
@@ -249,4 +237,4 @@ else:
             st.dataframe(df.head(10), use_container_width=True)
 
     except Exception as e:
-        st.error(f"Could not read the dataset: {e}")
+        st.error(f"Could not Read the Dataset: {e}")
