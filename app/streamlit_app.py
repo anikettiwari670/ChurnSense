@@ -36,13 +36,13 @@ predict_page = st.Page(
 
 batch_page = st.Page(
     str(APP_DIR / "pages" / "02_batch.py"),
-    title="Batch Predictions",
+    title="Batch Prediction",
     icon="📂",
 )
 
 analytics_page = st.Page(
     str(APP_DIR / "pages" / "03_analytics.py"),
-    title="Model Analytics",
+    title="Analytics",
     icon="📊",
 )
 
