@@ -29,19 +29,19 @@ home_page = st.Page(
 )
 
 predict_page = st.Page(
-    str(APP_DIR / "pages" / "01_Predict.py"),
+    str(APP_DIR / "pages" / "01_predict.py"),
     title="Predict Churn",
     icon="🔮",
 )
 
 batch_page = st.Page(
-    str(APP_DIR / "pages" / "02_Batch.py"),
+    str(APP_DIR / "pages" / "02_batch.py"),
     title="Batch Predictions",
     icon="📂",
 )
 
 analytics_page = st.Page(
-    str(APP_DIR / "pages" / "03_Analytics.py"),
+    str(APP_DIR / "pages" / "03_analytics.py"),
     title="Model Analytics",
     icon="📊",
 )
