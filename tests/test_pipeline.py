@@ -47,7 +47,7 @@ SAMPLE_CUSTOMER = pd.DataFrame(
 # --------------------------------------------------
 @pytest.fixture(scope="module")
 def model():
-    assert MODEL_PATH.exists(), f"Model not found: {MODEL_PATH}"
+    assert MODEL_PATH.exists(), f"Model Not Found: {MODEL_PATH}"
     return joblib.load(MODEL_PATH)
 
 
@@ -55,7 +55,7 @@ def model():
 # 4. Test model file exists
 # --------------------------------------------------
 def test_model_file_exists():
-    assert MODEL_PATH.is_file(), f"Model not found: {MODEL_PATH}"
+    assert MODEL_PATH.is_file(), f"Model Not Found: {MODEL_PATH}"
 
 
 # --------------------------------------------------
@@ -125,4 +125,4 @@ def test_input_features(model):
 def test_prediction_output_type(model):
     prediction = model.predict(SAMPLE_CUSTOMER)
 
-    assert isinstance(prediction, np.ndarray)
+    assert isinstance(prediction, np.ndarray) 

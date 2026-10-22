@@ -22,7 +22,7 @@ def train_model():
 
     if not DATA_PATH.is_file():
         raise FileNotFoundError(
-            f"Dataset not found: {DATA_PATH}"
+            f"Dataset not Found: {DATA_PATH}"
         )
 
     df = pd.read_csv(DATA_PATH)
@@ -32,7 +32,7 @@ def train_model():
 
     if missing_columns:
         raise ValueError(
-            f"Missing required columns: {missing_columns}"
+            f"Missing Required Columns: {missing_columns}"
         )
 
     # Remove rows with missing target labels.
@@ -49,7 +49,7 @@ def train_model():
 
     if y.isna().any():
         raise ValueError(
-            "Churn must contain only 'Yes' and 'No'."
+            "Churn Must Contain Only 'Yes' and 'No'."
         )
 
     # Remove the target and identifier from model inputs.
@@ -106,7 +106,7 @@ def train_model():
 
     joblib.dump(pipeline, MODEL_PATH)
 
-    print("\nNew model saved at:", MODEL_PATH)
+    print("\nNew Model Saved at:", MODEL_PATH)
 
 
 if __name__ == "__main__":

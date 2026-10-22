@@ -240,13 +240,13 @@ try:
 
 except FileNotFoundError:
     st.error(
-        f"Dataset not found: {DATA_PATH}. "
-        "Ensure the CSV exists in the repository's data folder."
+        f"Dataset not Found: {DATA_PATH}. "
+        "Ensure the CSV Exists in the Repository's Data Folder."
     )
     st.stop()
 
 except Exception as exc:
-    st.error(f"Unable to load the dataset: {exc}")
+    st.error(f"Unable to Load the Dataset: {exc}")
     st.stop()
 
 
@@ -259,13 +259,13 @@ missing_columns = required_columns - set(df.columns)
 
 if missing_columns:
     st.error(
-        "Dataset is missing required columns: "
+        "Dataset is Missing Required Columns: "
         + ", ".join(sorted(missing_columns))
     )
     st.stop()
 
 if df.empty:
-    st.warning("The dataset contains no customer records.")
+    st.warning("The Dataset Contains no Customer Records.")
     st.stop()
 
 
@@ -608,8 +608,8 @@ if "MonthlyCharges" in df.columns:
 
 with st.expander("🔎 Explore the Underlying Customer Data"):
     st.caption(
-        f"Previewing the first 100 rows of "
-        f"{total_customers:,} customer records."
+        f"Previewing the First 100 Rows of "
+        f"{total_customers:,} Customer Records."
     )
 
     st.dataframe(

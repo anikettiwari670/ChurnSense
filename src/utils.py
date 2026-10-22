@@ -11,16 +11,16 @@ def churn_rate(df: pd.DataFrame) -> float:
     """Calculate the percentage of customers who churned."""
 
     if "Churn" not in df.columns:
-        raise KeyError("Dataset must contain a 'Churn' column.")
+        raise KeyError("Dataset Must Contain a 'Churn' Column.")
 
     if df.empty:
-        raise ValueError("Cannot calculate churn rate for empty data.")
+        raise ValueError("Cannot Calculate Churn Rate for Empty Data.")
 
     churn = df["Churn"]
 
     if churn.isna().any():
         raise ValueError(
-            "The Churn column contains missing values."
+            "The Churn Column Contains Missing Values."
         )
 
     if pd.api.types.is_numeric_dtype(churn):
@@ -28,7 +28,7 @@ def churn_rate(df: pd.DataFrame) -> float:
 
         if not valid_values.issubset({0, 1}):
             raise ValueError(
-                "Numeric Churn values must be 0 or 1."
+                "Numeric Churn Values Must be 0 or 1."
             )
 
         churned = churn.eq(1)
@@ -40,7 +40,7 @@ def churn_rate(df: pd.DataFrame) -> float:
 
         if not valid_values.issubset({"yes", "no"}):
             raise ValueError(
-                "Churn must contain only 'Yes' and 'No'."
+                "Churn Must Contain Only 'Yes' and 'No'."
             )
 
         churned = normalized.eq("yes")

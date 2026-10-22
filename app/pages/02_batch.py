@@ -41,8 +41,8 @@ apply_theme()
 
 st.title("📂 Batch Churn Prediction")
 st.write(
-    "Upload a CSV containing customer features to predict churn "
-    "for multiple customers at once."
+    "Upload a CSV Containing Customer Features to Predict Churn "
+    "for Multiple Customers at Once."
 )
 
 
@@ -62,9 +62,9 @@ try:
         "Upload Customer CSV",
         type=["csv"],
         help=(
-            "The CSV should contain the same feature columns used to train "
-            "the model. A customerID column and an existing Churn column "
-            "are optional."
+            "The CSV Should Contain the Same Feature Columns used to Train "
+            "the Model. A customerID Column and an Existing Churn Column "
+            "are Optional."
         ),
     )
 
@@ -171,7 +171,7 @@ try:
 except FileNotFoundError:
     st.error(
         "Model File not Found. Ensure "
-        "'models/churn_model_v1.pkl' exists in the project root."
+        "'models/churn_model_v1.pkl' Exists in the Project Root."
     )
 except Exception as e:
     st.error(f"Batch Prediction Failed: {e}")

@@ -14,7 +14,7 @@ def load_model():
 
     if not MODEL_PATH.is_file():
         raise FileNotFoundError(
-            f"Model file not found: {MODEL_PATH}"
+            f"Model File not Found: {MODEL_PATH}"
         )
 
     return joblib.load(MODEL_PATH)
@@ -25,7 +25,7 @@ def predict_single(model, single_customer_data):
 
     if not isinstance(single_customer_data, dict):
         raise TypeError(
-            "single_customer_data must be a dictionary."
+            "single_customer_data Must be a Dictionary."
         )
 
     customer_df = pd.DataFrame([single_customer_data])
@@ -40,11 +40,11 @@ def predict_batch(model, batch_customers_data):
 
     if not isinstance(batch_customers_data, pd.DataFrame):
         raise TypeError(
-            "batch_customers_data must be a pandas DataFrame."
+            "batch_customers_data Must be a Pandas DataFrame."
         )
 
     if batch_customers_data.empty:
-        raise ValueError("Customer DataFrame cannot be empty.")
+        raise ValueError("Customer DataFrame Cannot be Empty.")
 
     predictions = model.predict(batch_customers_data)
 

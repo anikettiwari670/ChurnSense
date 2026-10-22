@@ -198,7 +198,7 @@ DATA_PATH = next(
 
 if DATA_PATH is None:
     st.info(
-        "Dataset CSV not found in the Expected Data Folder. "
+        "Dataset CSV not Found in the Expected Data Folder. "
         "Model Analytics can still work if the Trained Model is Present."
     )
 else:

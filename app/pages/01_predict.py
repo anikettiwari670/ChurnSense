@@ -67,7 +67,7 @@ def get_churn_probability(model, customer):
 
     if not churn_indices:
         raise ValueError(
-            f"Could not identify the churn class in model classes: {classes}"
+            f"Could not Identify the Churn Class in Model Classes: {classes}"
         )
 
     probabilities = model.predict_proba(customer)[0]
@@ -196,7 +196,7 @@ try:
         if expected is not None:
             missing = [c for c in expected if c not in customer.columns]
             if missing:
-                raise ValueError(f"Missing required model features: {missing}")
+                raise ValueError(f"Missing Required Model Features: {missing}")
             customer = customer[list(expected)]
 
         prediction = model.predict(customer)[0]
@@ -247,8 +247,8 @@ try:
                 st.success("Low Estimated Churn Probability.")
         else:
             st.info(
-                "This model does not support predict_proba, "
-                "so a churn probability cannot be displayed."
+                "This Model does not Support predict_proba, "
+                "so a Churn Probability Cannot be Displayed."
             )
 
         st.caption(
@@ -257,8 +257,8 @@ try:
 
 except FileNotFoundError:
     st.error(
-        "Model file not found. Ensure "
-        "'models/churn_model_v1.pkl' exists in the project root."
+        "Model File not Found. Ensure "
+        "'models/churn_model_v1.pkl' Exists in the Project Root."
     )
 except Exception as e:
-    st.error(f"Prediction failed: {e}")
+    st.error(f"Prediction Failed: {e}")

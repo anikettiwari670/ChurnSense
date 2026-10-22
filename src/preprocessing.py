@@ -22,12 +22,12 @@ def create_processor(df: pd.DataFrame):
     """Create preprocessing pipelines for customer features."""
 
     if not isinstance(df, pd.DataFrame):
-        raise TypeError("df must be a pandas DataFrame.")
+        raise TypeError("df must be a Pandas DataFrame.")
 
     num_cols, cat_cols = get_feature_columns(df)
 
     if not num_cols and not cat_cols:
-        raise ValueError("No numerical or categorical features found.")
+        raise ValueError("No Numerical or Categorical Features Found.")
 
     num_pipeline = Pipeline(
         steps = [
